@@ -1,0 +1,40 @@
+[
+  {
+    "name": "intro",
+    "writeup": "...",
+    "lessons": [
+      {
+        "name": "lesson 1",
+        "writeup": "...",
+        "questions": [
+          {
+            "type": "match",
+            "options": {},
+            "solution": {}
+          },
+          {
+            "type": "match",
+            "options": {},
+            "solution": {}
+          }
+        ]
+      },
+      {
+        "name": "lesson 2",
+        "writeup": "...",
+        "questions": [
+          {
+            "type": "match",
+            "options": {},
+            "solution": {}
+          },
+          {
+            "type": "match",
+            "options": {},
+            "solution": {}
+          }
+        ]
+      }
+    ]
+  }
+]
