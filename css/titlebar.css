@@ -4,9 +4,14 @@
   top: 0px;
   height: 32px;
   width: 100%;
-  color: #fff;
+  color: #fadec5;
   padding: 4px;
   z-index: 15;
+}
+
+.barbutton img {
+  filter: invert(8%) sepia(4%) saturate(2065%) hue-rotate(328deg)
+    brightness(101%) contrast(96%);
 }
 
 #titlebar #drag-region {

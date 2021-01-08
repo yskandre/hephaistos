@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Achievement 1",
+    "earned": true,
+    "icon": ["assets", "user.jpg"],
+    "desc": "A test achievement"
+  },
+  {
+    "name": "Achievement 2",
+    "earned": false,
+    "icon": ["assets", "user.jpg"],
+    "desc": "Another test achievement"
+  }
+]
