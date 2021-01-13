@@ -42,12 +42,12 @@ body {
   background-color: var(--primary);
 }
 
-#usertab {
+#user-tab {
   display: grid;
   grid-template-rows: 1fr 4fr;
 }
 
-#lessontab {
+#lesson-tab {
   height: 95%;
   width: 95%;
   margin-top: 3.75%;

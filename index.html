@@ -13,7 +13,7 @@
           <span>hephaistos</span>
         </div>
         <div id="window-controls">
-          <div class="barbutton" id="min-button">
+          <div class="bar-button" id="min-button">
             <img
               class="icon"
               srcset="
@@ -30,7 +30,7 @@
               draggable="false"
             />
           </div>
-          <div class="barbutton" id="max-button">
+          <div class="bar-button" id="max-button">
             <img
               class="icon"
               srcset="
@@ -47,7 +47,7 @@
               draggable="false"
             />
           </div>
-          <div class="barbutton" id="restore-button">
+          <div class="bar-button" id="restore-button">
             <img
               class="icon"
               srcset="
@@ -64,7 +64,7 @@
               draggable="false"
             />
           </div>
-          <div class="barbutton" id="close-button">
+          <div class="bar-button" id="close-button">
             <img
               class="icon"
               srcset="
@@ -85,15 +85,15 @@
       </div>
     </header>
     <div id="main">
-      <div id="usertab">
-        <div id="userdetails">
+      <div id="user-tab">
+        <div id="user-details">
           <table>
             <tr>
               <td>
-                <img id="userimg" src="" alt="pp" width="100" height="100" />
+                <img id="user-img" src="" alt="pp" width="100" height="100" />
               </td>
               <td>
-                <span id="username"></span>
+                <span id="user-name"></span>
                 <br />
                 <span id="title"></span>
                 <br />
@@ -104,8 +104,10 @@
         </div>
         <div id="achievements"></div>
       </div>
-      <div id="lessontab">Lessons</div>
-      <div id="detailtab"></div>
+      <div id="lesson-tab">Lessons</div>
+      <div id="detail-tab">
+        <p id="lesson-info"></p>
+      </div>
     </div>
   </body>
   <script src="js/renderer.js"></script>

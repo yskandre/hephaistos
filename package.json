@@ -24,6 +24,8 @@
     "electron": "^11.0.3",
     "electron-aspect-ratio-browser-window": "^1.0.2",
     "electron-packager": "^15.1.0",
-    "jsdom": "^16.4.0"
+    "jquery": "^3.5.1",
+    "jsdom": "^16.4.0",
+    "underscore": "^1.12.0"
   }
 }
