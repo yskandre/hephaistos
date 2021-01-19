@@ -4,35 +4,39 @@
     "lessons": [
       {
         "name": "lesson 1",
-        "writeup": "...",
+        "writeup": "The first lesson.",
         "questions": [
           {
             "type": "match",
-            "options": {},
-            "solution": {}
+            "question": "Match the letters with their corresponding number",
+            "options": [
+              ["a", "b", "c"],
+              ["1", "2", "3"]
+            ],
+            "solutions": [
+              ["a", "1"],
+              ["b", "2"],
+              ["c", "3"]
+            ]
           },
           {
-            "type": "match",
-            "options": {},
-            "solution": {}
+            "type": "build",
+            "question": "Build the sequence \"1, 2, 3\"",
+            "options": ["1", "2", "3", "4", "5"],
+            "solutions": ["1", "2", "3"]
+          },
+          {
+            "type": "choice",
+            "question": "Select the answer to following problem: 1 + 1 = ?",
+            "options": ["2", "3", "5"],
+            "solutions": ["2"]
           }
         ]
       },
       {
         "name": "lesson 2",
-        "writeup": "...",
-        "questions": [
-          {
-            "type": "match",
-            "options": {},
-            "solution": {}
-          },
-          {
-            "type": "match",
-            "options": {},
-            "solution": {}
-          }
-        ]
+        "writeup": "The second lesson",
+        "questions": []
       }
     ]
   }
