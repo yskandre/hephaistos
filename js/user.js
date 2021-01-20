@@ -3,15 +3,17 @@ const path = require('path')
 const $ = require('jquery')
 const _ = require('underscore')
 
-data = JSON.parse(fs.readFileSync(path.join('assets', 'userdata.json')))
-xp = data.xp
-title = data.title
+userData = JSON.parse(fs.readFileSync(path.join('assets', 'userdata.json')))
 
-$('#user-img').attr('src', path.join(...data.image))
-$('#user-name').html(data.name)
+$('#user-img').attr('src', path.join(...userData.image))
+$('#user-name').html(userData.name)
 updateUser()
 
 function updateUser() {
-  $('#title').html(title)
-  $('#xp').html(xp + 'XP gesammelt')
+  $('#title').html(userData.title)
+  $('#xp').html(userData.xp + 'XP gesammelt')
+}
+
+function saveUserData() {
+  fs.writeFileSync(path.join('assets', 'userdata.json'), JSON.stringify(userData))
 }

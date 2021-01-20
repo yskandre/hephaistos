@@ -27,13 +27,12 @@ function handleWindowControls() {
     win.maximize()
   })
 
-  document
-    .getElementById('restore-button')
-    .addEventListener('click', (event) => {
-      win.unmaximize()
-    })
+  document.getElementById('restore-button').addEventListener('click', (event) => {
+    win.unmaximize()
+  })
 
   document.getElementById('close-button').addEventListener('click', (event) => {
+    saveUserData()
     win.close()
   })
 

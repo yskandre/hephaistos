@@ -23,7 +23,7 @@
             "type": "build",
             "question": "Build the sequence \"1, 2, 3\"",
             "options": ["1", "2", "3", "4", "5"],
-            "solutions": ["1", "2", "3"]
+            "solutions": [["1", "2", "3"]]
           },
           {
             "type": "choice",

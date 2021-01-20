@@ -1,8 +1,8 @@
-data = JSON.parse(fs.readFileSync(path.join('assets', 'achievements.json')))
+achievementData = JSON.parse(fs.readFileSync(path.join('assets', 'achievements.json')))
 
 achievements = document.getElementById('achievements')
 
-data.forEach((a) => {
+achievementData.forEach((a) => {
   temp = document.createElement('div')
   temp.innerHTML = `
     <table>
@@ -12,7 +12,7 @@ data.forEach((a) => {
                   a.earned ? '0' : '1'
                 });" class="achievementicon" src="${path.join(
     ...a.icon
-  )}" alt="ai width="50" height="50" />
+  )}" alt="ai width="50" height="50"/>
             </td>
             <td>
                 <span class="achievementname">${a.name}</span>
