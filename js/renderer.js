@@ -1,4 +1,8 @@
 const remote = require('electron').remote
+const fs = require('fs')
+const path = require('path')
+const $ = require('jquery')
+const _ = require('underscore')
 
 const win = remote.getCurrentWindow() /* Note this is different to the
 html global `window` variable */
@@ -33,6 +37,8 @@ function handleWindowControls() {
 
   document.getElementById('close-button').addEventListener('click', (event) => {
     saveUserData()
+    saveAchievements()
+    saveCourseData()
     win.close()
   })
 

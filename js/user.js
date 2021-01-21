@@ -1,8 +1,3 @@
-const fs = require('fs')
-const path = require('path')
-const $ = require('jquery')
-const _ = require('underscore')
-
 userData = JSON.parse(fs.readFileSync(path.join('assets', 'userdata.json')))
 
 $('#user-img').attr('src', path.join(...userData.image))
@@ -15,5 +10,5 @@ function updateUser() {
 }
 
 function saveUserData() {
-  fs.writeFileSync(path.join('assets', 'userdata.json'), JSON.stringify(userData))
+  //fs.writeFileSync(path.join('assets', 'userdata.json'), JSON.stringify(userData))
 }

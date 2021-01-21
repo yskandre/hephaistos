@@ -7,20 +7,25 @@ achievementData.forEach((a) => {
   temp.innerHTML = `
     <table>
         <tr>
-            <td>
-                <img style="-webkit-filter: grayscale(${
-                  a.earned ? '0' : '1'
-                });" class="achievementicon" src="${path.join(
+            <td class="user-elements">
+               <img style="-webkit-filter: grayscale(${
+                 a.earned ? '0' : '1'
+               });" class="achievementicon" src="${path.join(
     ...a.icon
-  )}" alt="ai width="50" height="50"/>
+  )}" alt="ai" width="65" height="65"/>
             </td>
-            <td>
+            <td class="user-elements">
                 <span class="achievementname">${a.name}</span>
                 <br />
                 ${a.earned ? '<span>Earned</span><br />' : ''}
                 <span class="achievementdesc">${a.desc}</span>
             </td>
         </tr>
-    </table>`
+    </table>
+    <br>`
   achievements.appendChild(temp)
 })
+
+function saveAchievements() {
+  //fs.writeFileSync(path.join('assets', 'achievements.json'), JSON.stringify(achievementData))
+}

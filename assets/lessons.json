@@ -5,8 +5,9 @@
       {
         "name": "lesson 1",
         "writeup": "The first lesson.",
-        "questions": [
-          {
+        "questions": {
+          "0": {
+            "cleared": false,
             "type": "match",
             "question": "Match the letters with their corresponding number",
             "options": [
@@ -19,23 +20,65 @@
               ["c", "3"]
             ]
           },
-          {
+          "1": {
+            "cleared": false,
             "type": "build",
             "question": "Build the sequence \"1, 2, 3\"",
             "options": ["1", "2", "3", "4", "5"],
             "solutions": [["1", "2", "3"]]
           },
-          {
+          "2": {
+            "cleared": false,
             "type": "choice",
             "question": "Select the answer to following problem: 1 + 1 = ?",
             "options": ["2", "3", "5"],
             "solutions": ["2"]
           }
-        ]
+        }
       },
       {
         "name": "lesson 2",
         "writeup": "The second lesson",
+        "questions": []
+      },
+      {
+        "name": "lesson 3",
+        "writeup": "The third lesson",
+        "questions": []
+      },
+      {
+        "name": "lesson 4",
+        "writeup": "The fourth lesson",
+        "questions": []
+      },
+      {
+        "name": "lesson 5",
+        "writeup": "The fifth lesson",
+        "questions": []
+      },
+      {
+        "name": "lesson 6",
+        "writeup": "The sixth lesson",
+        "questions": []
+      },
+      {
+        "name": "lesson 7",
+        "writeup": "The seventh lesson",
+        "questions": []
+      },
+      {
+        "name": "lesson 8",
+        "writeup": "The eight lesson",
+        "questions": []
+      },
+      {
+        "name": "lesson 9",
+        "writeup": "The ninth lesson",
+        "questions": []
+      },
+      {
+        "name": "lesson 10",
+        "writeup": "The tenth lesson",
         "questions": []
       }
     ]
