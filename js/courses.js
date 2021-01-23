@@ -4,34 +4,35 @@ loadCourses()
 
 function loadCourses() {
   $('#lesson-tab').empty()
-  $('#lesson-tab').text('Lessons')
   courseData.forEach((s) => {
     masteredLessons = 0
     totalLessons = 0
     segment = $('<div class="course-segment"/>')
-    header = $(`<div class="course-title">${s.name}<hr class="course-seperator"></div>`)
+    header = $(`<div class="course-title">${s.name}</div>`)
     segment.append(header)
     s.lessons.forEach((lesson) => {
       clearedQuestions = Object.values(lesson.questions).filter((q) => q.cleared).length
       totalQuestions = Object.values(lesson.questions).length
-      if (clearedQuestions === totalQuestions && totalQuestions !== 0) {
-        masteredLessons += 1
-      }
-      totalLessons += 1
       button = $(
-        `<button class='lesson-button'>${lesson.name}<br>${clearedQuestions}/${totalQuestions} geschafft</button>`
+        `<button class='lesson-button'>${lesson.name}<br>${clearedQuestions}/${totalQuestions}</button>`
       )
       button.on('click', (e) => {
         if ($(e.target).hasClass('selected')) {
           $(e.target).removeClass('selected')
           loadLesson(lesson.questions)
-          $('#lesson-info').text('')
+          $('#lesson-info').html('')
         } else {
           $('.lesson-button').removeClass('selected')
           $(e.target).addClass('selected')
-          $('#lesson-info').text(lesson.writeup)
+          $('#lesson-info').html(lesson.writeup)
         }
       })
+      if (clearedQuestions === totalQuestions) {
+        masteredLessons += 1
+        button.addClass('mastered')
+      }
+      totalLessons += 1
+
       button.appendTo(segment)
     })
     footer = $(
@@ -45,8 +46,9 @@ function loadCourses() {
 
 function loadLesson(questions) {
   let newXP = 0
+  backdrop = $('<div class="modal-backdrop"></div>')
   modal = $('<div class="course-modal">Gaming</div>')
-  winPanel = $('<div>Ergebnisse:</div>')
+  winPanel = $('<div>Ergebnisse:<br></div>')
   showScoreButton = $('<button>Anzeigen</button>')
   showScoreButton.on('click', function () {
     userData.xp += newXP
@@ -55,6 +57,7 @@ function loadLesson(questions) {
     next = $(`<button>Super</button>`)
     next.on('click', function () {
       loadCourses()
+      backdrop.remove()
       modal.remove()
     })
     next.appendTo($(this).parent())
@@ -63,7 +66,7 @@ function loadLesson(questions) {
   showScoreButton.appendTo(winPanel)
   winPanel.hide()
   winPanel.appendTo(modal)
-  //Create Modal
+
   console.log(Object.values(questions))
   _.sample(Object.values(questions), Math.min(Object.values(questions).length, 5)).forEach(
     function (q) {
@@ -245,10 +248,10 @@ function loadLesson(questions) {
   )
   modal.children().last('.question').toggle()
   modal.appendTo('#main')
+  backdrop.appendTo('#main')
 
   function clearQuestion(q) {
     k = Object.keys(questions).find((key) => questions[key] === q)
-    console.log(q, 'LOL', k)
     if (!questions[k].cleared) {
       questions[k].cleared = true
     }

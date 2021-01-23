@@ -2,12 +2,14 @@
   {
     "name": "Achievement 1",
     "earned": true,
+    "date": "23.01.2021",
     "icon": ["assets", "user.jpg"],
     "desc": "A test achievement"
   },
   {
     "name": "Achievement 2",
     "earned": false,
+    "date": "",
     "icon": ["assets", "user.jpg"],
     "desc": "Another test achievement"
   }

@@ -1,30 +1,34 @@
 achievementData = JSON.parse(fs.readFileSync(path.join('assets', 'achievements.json')))
 
-achievements = document.getElementById('achievements')
+updateAchievements()
 
-achievementData.forEach((a) => {
-  temp = document.createElement('div')
-  temp.innerHTML = `
-    <table>
-        <tr>
-            <td class="user-elements">
-               <img style="-webkit-filter: grayscale(${
-                 a.earned ? '0' : '1'
-               });" class="achievementicon" src="${path.join(
-    ...a.icon
-  )}" alt="ai" width="65" height="65"/>
-            </td>
-            <td class="user-elements">
-                <span class="achievementname">${a.name}</span>
-                <br />
-                ${a.earned ? '<span>Earned</span><br />' : ''}
-                <span class="achievementdesc">${a.desc}</span>
-            </td>
-        </tr>
-    </table>
-    <br>`
-  achievements.appendChild(temp)
-})
+function updateAchievements() {
+  table = $('<table></table>')
+
+  achievementData.forEach((a) => {
+    row = $('<tr></tr>')
+    cellImage = $(`<td class="user-elements"></td>`)
+    cellImage.append(
+      `<img style="-webkit-filter: grayscale(${
+        a.earned ? '0' : '1'
+      });" class="achievement-icon" src="${path.join(...a.icon)}" alt="ai" width="65" height="65"/>`
+    )
+    cellImage.appendTo(row)
+    cellDesc = $(`<td class="user-elements"></td>`)
+    cellDesc.append(`<span class="achievement-name">${a.name}</span>`)
+    if (a.earned) {
+      cellDesc.append(`<span class="achievement-desc">Erhalten (${a.date})</span>`)
+    } else {
+      cellDesc.append(`<span class="achievement-desc">Noch nicht erhalten</span>`)
+    }
+    cellDesc.append('<br>')
+    cellDesc.append(`<span class="achievement-desc">${a.desc}</span>`)
+    cellDesc.appendTo(row)
+    row.appendTo(table)
+  })
+
+  $('#achievements').append(table)
+}
 
 function saveAchievements() {
   //fs.writeFileSync(path.join('assets', 'achievements.json'), JSON.stringify(achievementData))

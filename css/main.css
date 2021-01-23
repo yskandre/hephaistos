@@ -1,9 +1,12 @@
-:root {
-  --titlebar: #0a0a3d;
-  --primary: #112233;
-  --secondary: #775599;
-  --shadow: #5544aa;
-  --highlights: #fadec5;
+@import 'var.css';
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text);
+  margin-right: 10px;
 }
 
 html {
@@ -22,9 +25,10 @@ body {
 }
 
 body {
-  background-color: var(--titlebar);
-  color: var(--highlights);
+  background-color: var(--color-primary);
+  color: var(--color-text);
   overflow-y: hidden;
+  font-family: var(--font-text);
 }
 
 #main {
@@ -36,45 +40,89 @@ body {
   grid-template-columns: 5fr 6fr 5fr;
   column-gap: 10px;
   overflow: hidden;
-  background-color: var(--primary);
+  background-color: var(--color-primary);
 }
 
 #user-tab {
   display: grid;
   grid-template-rows: 1fr 4fr;
-  row-gap: 10px;
+}
+
+#user-details {
+  margin: 25px;
+  font-size: 16px;
+  background-color: var(--color-secondary);
+  border-radius: 25px;
+  border-width: 10px;
+  border-color: var(--color-border);
+  box-shadow: 5px 5px 0px 0px var(--color-drop);
+}
+
+#user-details .user-elements > img {
+  margin-top: 25px;
+  margin-left: 25px;
+  vertical-align: middle;
+  border-radius: 25px;
+  border-width: 0px;
+  box-shadow: 2.5px 2.5px 0px 0px var(--color-shadow);
+}
+
+#user-details .user-elements > span {
+  margin-left: 25px;
 }
 
 #achievements {
+  margin: 25px;
+  margin-top: 0px;
+  background-color: var(--color-secondary);
+  border-radius: 25px;
+  border-width: 10px;
+  border-color: var(--color-border);
+  box-shadow: 5px 5px 0px 0px var(--color-drop);
   overflow-y: auto;
 }
 
-.user-elements > img {
-  margin-left: 25;
+#achievements .user-elements > img {
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-bottom: 0px;
   vertical-align: middle;
+  border-radius: 25px;
+  border-width: 0px;
+  box-shadow: 2.5px 2.5px 0px 0px var(--color-shadow);
 }
 
-.user-elements > span {
-  margin-left: 25;
+#achievements .user-elements > span {
+  margin-left: 15px;
+}
+
+.achievement-name {
+  margin-top: 15px;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.achievement-desc {
+  font-size: 12px;
 }
 
 #lesson-tab {
-  height: 95%;
-  margin-top: 3.75%;
-  background-color: var(--secondary);
-  box-shadow: 0px 0px 0px 10px var(--shadow);
-  /* border-radius: 30px; */
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: var(--color-secondary);
+  box-shadow: 0px 2.5px 0px 2.5px var(--color-drop);
+  border-radius: 25px;
+  border-width: 10px;
   overflow-y: auto;
 }
 
-#lesson-tab > button {
-}
-
 .course-segment {
+  margin-top: 25px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-left: 50px;
-  margin-right: 50px;
+  row-gap: 2.5%;
+  margin-left: 20%;
+  width: 60%;
   justify-items: center;
   align-items: center;
 }
@@ -86,31 +134,67 @@ body {
   width: 80%;
 }
 
-.course-seperator {
-  border: 0;
-  border-top: 5px dotted var(--highlights);
-}
-
 .course-endmark {
   border: 0;
-  border-top: 1px solid var(--highlights);
+  border-top: 1px solid var(--color-text);
 }
 
 .lesson-button {
-  background-color: aliceblue;
-  color: #0a0a3d;
-  width: 75px;
-  height: 75px;
+  background-color: var(--color-ternary);
+  color: var(--color-text);
+  width: 15vh;
+  height: 15vh;
+  border-radius: 5vh;
+  border-width: 0px;
+  box-shadow: 2.5px 2.5px 0px 0px var(--color-shadow);
+  transition: 500ms ease-in;
+  font-family: var(--font-text);
+  font-size: 2vh;
+}
+
+.lesson-button.mastered {
+  background-color: var(--color-mastery);
+}
+
+.lesson-button.selected {
+  background-color: var(--color-highlight);
+  border-radius: 2.5vh;
 }
 
 .course-modal {
-  margin-left: calc((100% - 40%) / 2);
-  margin-right: calc((100% - 40%) / 2);
-  width: 40%;
+  margin-left: calc((100% - 30%) / 2);
+  margin-right: calc((100% - 30%) / 2);
   margin-top: 10%;
-  height: 30%;
+  margin-bottom: 10%;
+  width: 30%;
+  height: 70%;
+  top: 0px;
   position: fixed;
-  z-index: 1;
-  background-color: var(--primary);
-  box-shadow: 0px 0px 0px 5px var(--titlebar);
+  z-index: 10;
+  background-color: var(--color-primary);
+  box-shadow: 0px 0px 0px 5px var(--color-drop);
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 110%;
+  height: 110%;
+  background-color: var(--color-text);
+  opacity: 40%;
+  z-index: 5;
+}
+
+#detail-tab {
+  margin: 25px;
+  background-color: var(--color-secondary);
+  box-shadow: -5px 5px 0px 0px var(--color-drop);
+  border-radius: 25px;
+  border-width: 10px;
+  overflow-y: auto;
+}
+
+#lesson-info {
+  margin: 25px;
 }
