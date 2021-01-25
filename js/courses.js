@@ -38,7 +38,10 @@ function loadCourses() {
     footer = $(
       `<div class="course-title">${masteredLessons}/${totalLessons} gemeistert<hr class="course-endmark"></div>`
     )
-    //display mastery progress for segment, reload after each clear
+    if (masteredLessons === totalLessons) {
+      console.log(s)
+      unlockTitle(s.clearTitle)
+    }
     segment.append(footer)
     $('#lesson-tab').append(segment)
   })
@@ -47,6 +50,7 @@ function loadCourses() {
 function loadLesson(questions) {
   let newXP = 0
   backdrop = $('<div class="modal-backdrop"></div>')
+  progress = $('<div id="progress-bar"></div>')
   modal = $('<div class="course-modal">Gaming</div>')
   winPanel = $('<div>Ergebnisse:<br></div>')
   showScoreButton = $('<button>Anzeigen</button>')
@@ -56,9 +60,11 @@ function loadLesson(questions) {
     winPanel.append($(`<div>+${newXP}XP!<br>Du hast jetzt insgesamt ${userData.xp}XP!</div>`))
     next = $(`<button>Super</button>`)
     next.on('click', function () {
-      loadCourses()
+      progress.remove()
       backdrop.remove()
-      modal.remove()
+      modals.pop().remove()
+      unlockAchievement('Ein kleiner Schritt...')
+      loadCourses()
     })
     next.appendTo($(this).parent())
     $(this).toggle()
@@ -70,6 +76,7 @@ function loadLesson(questions) {
   console.log(Object.values(questions))
   _.sample(Object.values(questions), Math.min(Object.values(questions).length, 5)).forEach(
     function (q) {
+      progress.append('<div class="progress-point progress-todo"></div>')
       question = $(`<div class="question">${q.question}<br></div>`)
       switch (q.type) {
         case 'match':
@@ -78,7 +85,7 @@ function loadLesson(questions) {
           left = _.shuffle(q.options[0])
           right = _.shuffle(q.options[1])
           for (let i = 0; i < Math.min(left.length, right.length); i++) {
-            buttonLeft = $(`<button class="match-left">${left[i]}</button>`)
+            buttonLeft = $(`<button class="task-button match-left">${left[i]}</button>`)
             buttonLeft.on('click', function () {
               if ($(this).hasClass('matched')) {
                 //animation
@@ -100,15 +107,17 @@ function loadLesson(questions) {
                   newXP += 2
                   //indicator
                   matchButtons.forEach((e) => {
-                    e.addClass('matched')
+                    e.addClass('matched disabled')
                     e.removeClass('selected')
+                    e.prop('disabled', true)
                   })
                   match = ['', '']
                   matchButtons = [null, null]
-                  if (!$(this).parent().children('button').not('.matched').length) {
+                  if (!$(this).parent().children('.task-button').not('.matched').length) {
                     clearQuestion(q)
-                    //disable other buttons
-                    next = $(`<button>Weiter</button>`)
+                    advanceProgress(true)
+
+                    next = $(`<button class="task-menu-button">Weiter</button>`)
                     next.on('click', function () {
                       $(this).parent().prev().toggle()
                       $(this).parent().toggle()
@@ -125,7 +134,7 @@ function loadLesson(questions) {
               }
               console.log(match)
             })
-            buttonRight = $(`<button class="match-right">${right[i]}</button>`)
+            buttonRight = $(`<button class="task-button match-right">${right[i]}</button>`)
             buttonRight.on('click', function () {
               if ($(this).hasClass('matched')) {
                 //animation
@@ -146,15 +155,17 @@ function loadLesson(questions) {
                   newXP += 2
                   //indicator
                   matchButtons.forEach((e) => {
-                    e.addClass('matched')
+                    e.addClass('matched disabled')
                     e.removeClass('selected')
+                    e.prop('disabled', true)
                   })
                   match = ['', '']
                   matchButtons = [null, null]
-                  if (!$(this).parent().children('button').not('.matched').length) {
+                  if (!$(this).parent().children('.task-button').not('.matched').length) {
                     clearQuestion(q)
-                    //disable other buttons
-                    next = $(`<button>Weiter</button>`)
+                    advanceProgress(true)
+
+                    next = $(`<button class="task-menu-button">Weiter</button>`)
                     next.on('click', function () {
                       $(this).parent().prev().toggle()
                       $(this).parent().toggle()
@@ -180,7 +191,7 @@ function loadLesson(questions) {
           let build = []
           options = _.shuffle(q.options)
           options.forEach((e) => {
-            button = $(`<button>${e}</button>`)
+            button = $(`<button class="task-button">${e}</button>`)
             button.on('click', function () {
               if (build.some((v) => v === e)) {
                 build = build.filter((v) => v != e)
@@ -193,16 +204,20 @@ function loadLesson(questions) {
             button.appendTo(question)
             $('<br>').appendTo(question)
           })
-          submit = $(`<button>Abgeben!</button>`)
+          submit = $(`<button class="task-menu-button">Abgeben!</button>`)
           submit.on('click', function () {
-            if (q.solutions.some((s) => _.isEqual(s, build))) {
+            passed = q.solutions.some((s) => _.isEqual(s, build))
+            if (passed) {
               newXP += 5
               clearQuestion(q)
               //indicator
             }
+            advanceProgress(passed)
 
-            //disable other buttons
-            next = $(`<button>Weiter</button>`)
+            $(this).parent().children('.task-button').addClass('.disabled')
+            $(this).parent().children('.task-button').prop('disabled', true)
+
+            next = $(`<button class="task-menu-button">Weiter</button>`)
             next.on('click', function () {
               $(this).parent().prev().toggle()
               $(this).parent().toggle()
@@ -216,22 +231,27 @@ function loadLesson(questions) {
           let choice = ''
           options = _.shuffle(q.options)
           options.forEach((e) => {
-            button = $(`<button>${e}</button>`)
+            button = $(`<button class="task-button">${e}</button>`)
             button.on('click', () => {
               choice = e
             })
             button.appendTo(question)
             $('<br>').appendTo(question)
           })
-          submit = $(`<button>Abgeben!</button>`)
+          submit = $(`<button class="task-menu-button">Abgeben!</button>`)
           submit.on('click', function () {
-            if (_.contains(q.solutions, choice)) {
+            passed = _.contains(q.solutions, choice)
+            if (passed) {
               newXP += 5
               clearQuestion(q)
               //indicator
             }
-            //disable other buttons
-            next = $(`<button>Weiter</button>`)
+            advanceProgress(passed)
+
+            $(this).parent().children('.task-button').addClass('.disabled')
+            $(this).parent().children('.task-button').prop('disabled', true)
+
+            next = $(`<button class="task-menu-button">Weiter</button>`)
             next.on('click', function () {
               $(this).parent().prev().toggle()
               $(this).parent().toggle()
@@ -248,7 +268,10 @@ function loadLesson(questions) {
   )
   modal.children().last('.question').toggle()
   modal.appendTo('#main')
+  progress.appendTo('#main')
   backdrop.appendTo('#main')
+
+  modals.push(modal)
 
   function clearQuestion(q) {
     k = Object.keys(questions).find((key) => questions[key] === q)
@@ -257,6 +280,12 @@ function loadLesson(questions) {
     }
     //if lesson not yet cleared, set flag and increment counters etc
     //else return
+  }
+
+  function advanceProgress(passed) {
+    progressPoint = $('#progress-bar').children('.progress-todo').first()
+    progressPoint.removeClass('progress-todo')
+    progressPoint.addClass(passed ? 'progress-passed' : 'progress-failed')
   }
 }
 

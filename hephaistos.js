@@ -12,7 +12,7 @@ function createWindow() {
     },
   })
 
-  win.setAspectRatio(16 / 9)
+  //win.setAspectRatio(16 / 9)
   win.maximize()
   win.show()
 

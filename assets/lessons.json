@@ -1,6 +1,10 @@
 [
   {
     "name": "intro",
+    "clearTitle": {
+      "name": "Java-Junkie",
+      "desc": "Java ist auch eine Insel"
+    },
     "lessons": [
       {
         "name": "lesson 1",
@@ -45,7 +49,16 @@
         "name": "lesson 3",
         "writeup": "The third lesson",
         "questions": []
-      },
+      }
+    ]
+  },
+  {
+    "name": "intro 2",
+    "clearTitle": {
+      "name": "Geany-Genius",
+      "desc": "Du hast 3 Wünsche - PATH-Probleme nicht inkludiert"
+    },
+    "lessons": [
       {
         "name": "lesson 4",
         "writeup": "The fourth lesson",

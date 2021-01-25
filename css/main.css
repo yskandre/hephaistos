@@ -31,6 +31,22 @@ body {
   font-family: var(--font-text);
 }
 
+.windowed #main {
+  grid-template-columns: 1fr;
+}
+
+.windowed #lesson-tab {
+  margin: 25px;
+}
+
+.windowed #user-tab {
+  display: none;
+}
+
+.windowed #detail-tab {
+  display: none;
+}
+
 #main {
   position: absolute;
   display: grid;
@@ -106,6 +122,56 @@ body {
   font-size: 12px;
 }
 
+.achievement-modal {
+  margin-left: calc((100% - 30%) / 2);
+  margin-right: calc((100% - 30%) / 2);
+  margin-top: 10%;
+  margin-bottom: 10%;
+  width: 30%;
+  height: 15%;
+  top: 0px;
+  position: fixed;
+  z-index: 10;
+  background-color: var(--color-primary);
+  box-shadow: 0px 0px 0px 5px var(--color-drop);
+}
+
+.achievement-modal .user-elements > img {
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin: 15px;
+  vertical-align: middle;
+  border-radius: 25px;
+  border-width: 0px;
+  box-shadow: 2.5px 2.5px 0px 0px var(--color-shadow);
+}
+
+.achievement-modal .achievement-name {
+  margin-top: 15px;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.achievement-modal .achievement-desc {
+  font-size: 12px;
+}
+
+.achievement-modal button {
+  margin-right: 15px;
+  background-color: var(--color-ternary);
+  color: var(--color-text);
+  width: 10vh;
+  height: 5vh;
+  border-style: solid;
+  border-radius: 25px;
+  border-width: 0.5vh;
+  border-color: var(--color-border);
+  box-shadow: 2.5px 2.5px 0px 0px var(--color-shadow);
+  transition: border-radius 500ms ease-in;
+  font-family: var(--font-text);
+  font-size: 2vh;
+}
+
 #lesson-tab {
   margin-top: 25px;
   margin-bottom: 25px;
@@ -135,6 +201,7 @@ body {
 }
 
 .course-endmark {
+  margin-bottom: 5vh;
   border: 0;
   border-top: 1px solid var(--color-text);
 }
@@ -144,10 +211,12 @@ body {
   color: var(--color-text);
   width: 15vh;
   height: 15vh;
+  border-style: solid;
   border-radius: 5vh;
-  border-width: 0px;
+  border-width: 1vh;
+  border-color: var(--color-border);
   box-shadow: 2.5px 2.5px 0px 0px var(--color-shadow);
-  transition: 500ms ease-in;
+  transition: border-radius 500ms ease-in;
   font-family: var(--font-text);
   font-size: 2vh;
 }
@@ -181,9 +250,63 @@ body {
   left: 0px;
   width: 110%;
   height: 110%;
-  background-color: var(--color-text);
+  background-color: var(--color-backdrop);
   opacity: 40%;
   z-index: 5;
+}
+
+#progress-bar {
+  margin-top: 5%;
+  margin-bottom: 80%;
+  padding: 1vh;
+  width: auto;
+  height: auto;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 0px;
+  position: fixed;
+  z-index: 9;
+  background-color: var(--color-primary);
+  box-shadow: 0px 0px 0px 5px var(--color-drop);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-point {
+  border-radius: 15px;
+  margin-left: 0.5vh;
+  margin-right: 0.5vh;
+  height: 40px;
+  width: 40px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--color-text);
+}
+
+.progress-todo {
+  background-color: var(--color-todo);
+  opacity: 40%;
+}
+
+.progress-passed {
+  background-color: var(--color-passed);
+}
+
+.progress-failed {
+  background-color: var(--color-failed);
+}
+
+#course-modal .task-menu-button {
+}
+
+#course-modal .task-button {
+}
+
+#course-modal .task-button.selected {
+}
+
+#course-modal .task-button.matched {
 }
 
 #detail-tab {

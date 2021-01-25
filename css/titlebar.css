@@ -13,7 +13,7 @@
 }
 
 .bar-button img {
-  /*filter: invert(8%) sepia(4%) saturate(2065%) hue-rotate(328deg) brightness(101%) contrast(96%);*/
+  filter: var(--filter);
 }
 
 #titlebar #drag-region {
@@ -48,7 +48,7 @@
   background: var(--color-highlight);
 }
 #window-controls .bar-button:active {
-  background: var(--color-highlight);
+  background: var(--color-clicked);
 }
 
 #close-button:hover {
@@ -61,7 +61,7 @@
   filter: invert(1);
 }
 
-#dark-toggle {
+.theme-toggle {
   grid-column: 1;
 }
 

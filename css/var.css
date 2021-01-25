@@ -6,29 +6,41 @@
   --color-title-text: #112233;
   --color-primary: #f3eacb;
   --color-secondary: #dbcfa2;
-  --color-ternary: #f55a46;
+  --color-ternary: #dec5fa;
   --color-border: #db614b;
   --color-drop: #db614b;
   --color-shadow: #8f352f;
-  --color-highlight: #7a77db;
+  --color-highlight: #94abd6;
+  --color-clicked: #9290c5;
   --color-mastery: #bfccdb;
   --color-text: #112233;
+  --color-backdrop: #112233;
+  --color-todo: #9290c5;
+  --color-passed: #7a77db;
+  --color-failed: #f55a46;
   --font-title: 'Lobster', cursive;
   --font-text: 'Montserrat', sans-serif;
+  --filter: invert(11%) sepia(11%) saturate(3060%) hue-rotate(169deg) brightness(94%) contrast(95%);
 }
 
 :root.dark {
   --color-titlebar: #22345c;
   --color-title-text: #dae5f2;
   --color-primary: #203d5c;
-  --color-secondary: #4f255c;
+  --color-secondary: #29255c;
   --color-ternary: #db7a5c;
   --color-border: #6e2545;
   --color-drop: #6e2545;
   --color-shadow: #5c1548;
   --color-highlight: #7668db;
+  --color-clicked: #9290c5;
   --color-mastery: #5d6cdb;
   --color-text: #dae5f2;
+  --color-backdrop: #112233;
+  --color-todo: #9290c5;
+  --color-passed: #5d6cdb;
+  --color-failed: #db7a5c;
   --font-title: 'Lobster', cursive;
   --font-text: 'Montserrat', sans-serif;
+  --filter: invert(94%) sepia(4%) saturate(913%) hue-rotate(182deg) brightness(95%) contrast(101%);
 }

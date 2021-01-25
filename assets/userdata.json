@@ -1,6 +1,12 @@
 {
   "name": "Alex",
   "xp": 0,
-  "title": "Noob",
-  "image": ["assets", "user.jpg"]
+  "titles": ["Code-Forger"],
+  "image": ["assets", "user.jpg"],
+  "streak": 10,
+  "login": {
+    "day": 24,
+    "month": 0,
+    "year": 2021
+  }
 }

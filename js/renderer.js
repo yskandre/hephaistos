@@ -22,12 +22,10 @@ window.onbeforeunload = (event) => {
 }
 
 function handleWindowControls() {
-  document.getElementById('dark-toggle').addEventListener('click', (event) => {
-    if ($('html').hasClass('dark')) {
-      $('html').removeClass('dark')
-    } else {
-      $('html').addClass('dark')
-    }
+  $('.theme-toggle').on('click', (event) => {
+    console.log('a')
+    $('html').toggleClass('dark')
+    $('.theme-toggle').toggle()
   })
 
   // Make minimise/maximise/restore/close buttons work when they are clicked
