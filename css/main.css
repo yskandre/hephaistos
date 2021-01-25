@@ -128,7 +128,7 @@ body {
   margin-top: 10%;
   margin-bottom: 10%;
   width: 30%;
-  height: 15%;
+  height: 17.5%;
   top: 0px;
   position: fixed;
   z-index: 10;
@@ -146,21 +146,41 @@ body {
   box-shadow: 2.5px 2.5px 0px 0px var(--color-shadow);
 }
 
-.achievement-modal .achievement-name {
+.info-modal {
+  margin-left: calc((100% - 30%) / 2);
+  margin-right: calc((100% - 30%) / 2);
+  margin-top: 10%;
+  margin-bottom: 10%;
+  width: 30%;
+  height: 40%;
+  top: 0px;
+  position: fixed;
+  overflow: auto;
+  z-index: 10;
+  background-color: var(--color-primary);
+  box-shadow: 0px 0px 0px 5px var(--color-drop);
+}
+
+.modal .achievement-name {
   margin-top: 15px;
   font-size: 14px;
   text-decoration: underline;
 }
 
-.achievement-modal .achievement-desc {
+.modal .title-name {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.modal .achievement-desc {
   font-size: 12px;
 }
 
-.achievement-modal button {
-  margin-right: 15px;
+.modal button {
+  margin: 15px;
   background-color: var(--color-ternary);
   color: var(--color-text);
-  width: 10vh;
+  min-width: 10vh;
   height: 5vh;
   border-style: solid;
   border-radius: 25px;
@@ -170,6 +190,28 @@ body {
   transition: border-radius 500ms ease-in;
   font-family: var(--font-text);
   font-size: 2vh;
+}
+
+.modal-title {
+  margin-top: 1.25vh;
+  margin-bottom: 1.25vh;
+  text-decoration: underline;
+}
+
+.modal {
+  text-align: center;
+}
+
+.modal .centered {
+  display: inline-block;
+}
+
+.modal .user-elements.right-align {
+  text-align: right;
+}
+
+.modal-table {
+  width: 100%;
 }
 
 #lesson-tab {
@@ -297,16 +339,25 @@ body {
   background-color: var(--color-failed);
 }
 
-#course-modal .task-menu-button {
+.modal button.selected {
+  background-color: var(--color-highlight);
 }
 
-#course-modal .task-button {
+.modal button.matched {
+  background-color: var(--color-mastery);
+  border-color: var(--color-highlight);
 }
 
-#course-modal .task-button.selected {
+.modal button.correct {
+  border-color: var(--color-highlight);
 }
 
-#course-modal .task-button.matched {
+.modal button.failed {
+  border-color: var(--color-failed);
+}
+
+.modal button.disabled {
+  opacity: 60%;
 }
 
 #detail-tab {

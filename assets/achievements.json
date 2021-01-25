@@ -2,43 +2,43 @@
   "Hello World": {
     "earned": false,
     "date": "",
-    "icon": ["assets", "user.jpg"],
+    "icon": ["assets", "achievements", "default.jpg"],
     "desc": "Starte hephaistos zum ersten Mal"
   },
   "Ein kleiner Schritt...": {
     "earned": false,
     "date": "",
-    "icon": ["assets", "user.jpg"],
+    "icon": ["assets", "achievements", "default.jpg"],
     "desc": "Schließe deine erste Übung ab"
   },
   "Login-Streak Level 1": {
     "earned": false,
     "date": "",
-    "icon": ["assets", "user.jpg"],
+    "icon": ["assets", "achievements", "default.jpg"],
     "desc": "Öffne hephaistos 5 Tage hintereinander"
   },
   "Login-Streak Level 2": {
     "earned": false,
     "date": "",
-    "icon": ["assets", "user.jpg"],
+    "icon": ["assets", "achievements", "default.jpg"],
     "desc": "Öffne hephaistos 15 Tage hintereinander"
   },
   "Login-Streak Level 3": {
     "earned": false,
     "date": "",
-    "icon": ["assets", "user.jpg"],
+    "icon": ["assets", "achievements", "default.jpg"],
     "desc": "Öffne hephaistos 30 Tage hintereinander"
   },
   "Login-Streak Level 4": {
     "earned": false,
     "date": "",
-    "icon": ["assets", "user.jpg"],
+    "icon": ["assets", "achievements", "default.jpg"],
     "desc": "Öffne hephaistos 50 Tage hintereinander"
   },
   "Login-Streak Level 5": {
     "earned": false,
     "date": "",
-    "icon": ["assets", "user.jpg"],
+    "icon": ["assets", "achievements", "default.jpg"],
     "desc": "Öffne hephaistos 75 Tage hintereinander"
   }
 }

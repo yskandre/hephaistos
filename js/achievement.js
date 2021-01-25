@@ -45,12 +45,15 @@ function unlockAchievement(name) {
       year: 'numeric',
     }).format(new Date())
 
-    modal = $('<div class="achievement-modal"></div>')
+    modal = $('<div class="achievement-modal modal"></div>')
     modal.append(
-      $(`<span class="modal-title">Du hast ein neues Achievement freigeschaltet!<br></span>`)
+      $(`<div class="modal-title">Du hast ein neues Achievement freigeschaltet!<br></div>`)
     )
 
-    table = $('<table></table>')
+    table = $('<table class="modal-table"></table>')
+    table.append(
+      '<colgroup><col style="width:25%;"><col style="width:50%;"><col style="width:25%;"></colgroup>'
+    )
     row = $('<tr></tr>')
     cellImage = $(`<td class="user-elements"></td>`)
     cellImage.append(
@@ -64,7 +67,7 @@ function unlockAchievement(name) {
     cellDesc.append('<br>')
     cellDesc.append(`<span class="achievement-desc">${achievementData[name].desc}</span>`)
     cellDesc.appendTo(row)
-    cellNext = $(`<td class="user-elements"></td>`)
+    cellNext = $(`<td class="user-elements right-align"></td>`)
     next = $(`<button>Super</button>`)
     next.on('click', function () {
       if (modals.length === 1) backdrop.remove()

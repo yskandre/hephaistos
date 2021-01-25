@@ -1,8 +1,8 @@
 {
-  "name": "Alex",
+  "name": "Klicke, um deinen Namen zu setzen",
   "xp": 0,
-  "titles": ["Code-Forger"],
-  "image": ["assets", "user.jpg"],
+  "titles": [{ "name": "Code-Forger", "desc": "Schmiede deine Zukunft" }],
+  "image": ["assets", "defaults", "user.png"],
   "streak": 10,
   "login": {
     "day": 24,

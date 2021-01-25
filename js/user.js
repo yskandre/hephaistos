@@ -2,12 +2,13 @@ userData = JSON.parse(fs.readFileSync(path.join('assets', 'userdata.json')))
 
 updateUser()
 updateStreak()
+setupProfile()
 
 function updateUser() {
   $('#user-img').attr('src', path.join(...userData.image))
   $('#user-name').html(userData.name)
-  $('#title').html(_.sample(userData.titles))
-  $('#xp').html(userData.xp + 'XP gesammelt')
+  $('#title').html(_.sample(userData.titles).name)
+  $('#xp').html(userData.xp + ' XP gesammelt')
 }
 
 function updateStreak() {
@@ -53,12 +54,13 @@ function unlockTitle(title) {
   if (!_.contains(userData.titles, title)) {
     userData.titles.push(title)
 
-    modal = $('<div class="achievement-modal"></div>')
-    modal.append(
-      $(`<span class="modal-title">Du hast einen neuen Titel freigeschaltet!<br></span>`)
-    )
+    modal = $('<div class="achievement-modal modal"></div>')
+    modal.append($(`<div class="modal-title">Du hast einen neuen Titel freigeschaltet!<br></div>`))
 
-    table = $('<table></table>')
+    table = $('<table class="modal-table"></table>')
+    table.append(
+      '<colgroup><col style="width:25%;"><col style="width:50%;"><col style="width:25%;"></colgroup>'
+    )
     row = $('<tr></tr>')
     cellImage = $(`<td class="user-elements"></td>`)
     cellImage.append(
@@ -72,7 +74,7 @@ function unlockTitle(title) {
     cellDesc.append('<br>')
     cellDesc.append(`<span class="achievement-desc">${title.desc}</span>`)
     cellDesc.appendTo(row)
-    cellNext = $(`<td class="user-elements"></td>`)
+    cellNext = $(`<td class="user-elements right-align"></td>`)
     next = $(`<button>Super</button>`)
     next.on('click', function () {
       if (modals.length === 1) backdrop.remove()
@@ -91,6 +93,75 @@ function unlockTitle(title) {
 
     modals.push(modal)
   }
+}
+
+function setupProfile() {
+  $('#user-img').on('click', function () {
+    filepath = remote.dialog.showOpenDialogSync(
+      {
+        title: 'Wähle deinen Avatar aus',
+        defaultPath: path.join(...userData.image.slice(userData.image.length - 2)),
+        buttonLabel: 'Upload',
+        filters: [
+          {
+            name: 'Image Files',
+            extensions: ['png', 'jpg'],
+          },
+        ],
+      },
+      { properties: ['openFile'] }
+    )
+
+    if (filepath) {
+      fs.copyFileSync(filepath[0], path.join(...userData.image))
+      $('#user-img').attr('src', path.join(...userData.image) + '?t=' + new Date().getTime())
+    }
+  })
+  $('#user-name').on('click', function () {
+    modal = $('<div class="info-modal modal"></div>')
+    modal.append($(`<div class="modal-title">Gib deinen gewünschten Namen ein:</div><br>`))
+    inputField = $(
+      `<input type="text" placeholder="${userData.name}" class="input-field"></input><br>`
+    )
+    inputField.appendTo(modal)
+    next = $(`<button>Speichern</button>`)
+    next.on('click', function () {
+      if (inputField.val()) userData.name = inputField.val()
+      if (modals.length === 1) backdrop.remove()
+      modals.pop().remove()
+      updateUser()
+    })
+    next.appendTo(modal)
+    modal.appendTo('#main')
+    if (modals.length === 0) {
+      backdrop = $('<div class="modal-backdrop"></div>')
+      backdrop.appendTo('#main')
+    }
+
+    modals.push(modal)
+  })
+  $('#title').on('click', function () {
+    modal = $('<div class="info-modal modal"></div>')
+    modal.append($(`<div class="modal-title">Du hast folgende Titel freigeschaltet!<br></div>`))
+    titleList = $('<div style="overflow: auto; height: 69%;"></div>')
+    userData.titles.forEach((title) => {
+      titleList.append(`<span class="title-name">${title.name}</span><br>`)
+    })
+    titleList.appendTo(modal)
+    next = $(`<button>Schließen</button>`)
+    next.on('click', function () {
+      if (modals.length === 1) backdrop.remove()
+      modals.pop().remove()
+    })
+    next.appendTo(modal)
+    modal.appendTo('#main')
+    if (modals.length === 0) {
+      backdrop = $('<div class="modal-backdrop"></div>')
+      backdrop.appendTo('#main')
+    }
+
+    modals.push(modal)
+  })
 }
 
 function saveUserData() {

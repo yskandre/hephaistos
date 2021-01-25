@@ -51,8 +51,8 @@ function loadLesson(questions) {
   let newXP = 0
   backdrop = $('<div class="modal-backdrop"></div>')
   progress = $('<div id="progress-bar"></div>')
-  modal = $('<div class="course-modal">Gaming</div>')
-  winPanel = $('<div>Ergebnisse:<br></div>')
+  modal = $('<div class="course-modal modal"></div>')
+  winPanel = $('<div class="modal-title">Ergebnisse:<br></div>')
   showScoreButton = $('<button>Anzeigen</button>')
   showScoreButton.on('click', function () {
     userData.xp += newXP
@@ -77,7 +77,8 @@ function loadLesson(questions) {
   _.sample(Object.values(questions), Math.min(Object.values(questions).length, 5)).forEach(
     function (q) {
       progress.append('<div class="progress-point progress-todo"></div>')
-      question = $(`<div class="question">${q.question}<br></div>`)
+      question = $(`<div class="question"></div>`)
+      question.append(`<div class=modal-title>${q.question}</div><br>`)
       switch (q.type) {
         case 'match':
           let match = ['', '']
@@ -188,33 +189,43 @@ function loadLesson(questions) {
           }
           break
         case 'build':
+          correctButtons = []
+          selectedButtons = []
           let build = []
+          combination = $('<span class="build-combination"></span>')
           options = _.shuffle(q.options)
           options.forEach((e) => {
             button = $(`<button class="task-button">${e}</button>`)
+            if (q.solutions.some((s) => _.contains(s, e))) {
+              correctButtons.push(button)
+            }
             button.on('click', function () {
               if (build.some((v) => v === e)) {
                 build = build.filter((v) => v != e)
+                selectedButtons = selectedButtons.filter((v) => v != $(this))
               } else {
                 build.push(e)
+                selectedButtons.push($(this))
               }
-              console.log(build)
-              //show current selection
+              $(this).toggleClass('selected')
+              combination.text(build.join(' '))
             })
             button.appendTo(question)
-            $('<br>').appendTo(question)
+            question.append('<br>')
           })
           submit = $(`<button class="task-menu-button">Abgeben!</button>`)
           submit.on('click', function () {
-            passed = q.solutions.some((s) => _.isEqual(s, build))
-            if (passed) {
+            if (q.solutions.some((s) => _.isEqual(s, build))) {
               newXP += 5
               clearQuestion(q)
-              //indicator
+              advanceProgress(true)
+              selectedButtons.forEach((b) => b.addClass('matched'))
+            } else {
+              advanceProgress(false)
+              selectedButtons.forEach((b) => b.addClass('failed'))
+              correctButtons.forEach((b) => b.addClass('matched'))
             }
-            advanceProgress(passed)
-
-            $(this).parent().children('.task-button').addClass('.disabled')
+            $(this).parent().children('.task-button').addClass('disabled')
             $(this).parent().children('.task-button').prop('disabled', true)
 
             next = $(`<button class="task-menu-button">Weiter</button>`)
@@ -225,30 +236,43 @@ function loadLesson(questions) {
             next.appendTo($(this).parent())
             $(this).toggle()
           })
+          combination.appendTo(question)
+          question.append('<br>')
           submit.appendTo(question)
           break
         case 'choice':
+          correctChoices = []
+          selectedChoice = null
           let choice = ''
           options = _.shuffle(q.options)
           options.forEach((e) => {
             button = $(`<button class="task-button">${e}</button>`)
-            button.on('click', () => {
+            if (_.contains(q.solutions, e)) {
+              correctChoices.push(button)
+            }
+            button.on('click', function () {
               choice = e
+              selectedChoice = $(this)
+              $(this).parent().children('.task-button').removeClass('selected')
+              $(this).addClass('selected')
             })
             button.appendTo(question)
-            $('<br>').appendTo(question)
+            question.append('<br>')
           })
           submit = $(`<button class="task-menu-button">Abgeben!</button>`)
           submit.on('click', function () {
-            passed = _.contains(q.solutions, choice)
-            if (passed) {
+            if (_.contains(q.solutions, choice)) {
               newXP += 5
               clearQuestion(q)
-              //indicator
+              advanceProgress(true)
+              selectedChoice.addClass('matched')
+            } else {
+              advanceProgress(false)
+              selectedChoice.addClass('failed')
+              correctChoices.forEach((b) => b.addClass('matched'))
             }
-            advanceProgress(passed)
 
-            $(this).parent().children('.task-button').addClass('.disabled')
+            $(this).parent().children('.task-button').addClass('disabled')
             $(this).parent().children('.task-button').prop('disabled', true)
 
             next = $(`<button class="task-menu-button">Weiter</button>`)
