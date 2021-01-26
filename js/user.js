@@ -51,7 +51,7 @@ function updateStreak() {
 }
 
 function unlockTitle(title) {
-  if (!_.contains(userData.titles, title)) {
+  if (userData.titles.some((e) => e.name === title)) {
     userData.titles.push(title)
 
     modal = $('<div class="achievement-modal modal"></div>')
@@ -165,5 +165,5 @@ function setupProfile() {
 }
 
 function saveUserData() {
-  //fs.writeFileSync(path.join('assets', 'userdata.json'), JSON.stringify(userData))
+  fs.writeFileSync(path.join('assets', 'userdata.json'), JSON.stringify(userData))
 }

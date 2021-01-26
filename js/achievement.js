@@ -91,5 +91,5 @@ function unlockAchievement(name) {
 }
 
 function saveAchievements() {
-  //fs.writeFileSync(path.join('assets', 'achievements.json'), JSON.stringify(achievementData))
+  fs.writeFileSync(path.join('assets', 'achievements.json'), JSON.stringify(achievementData))
 }

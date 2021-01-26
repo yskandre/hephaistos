@@ -316,5 +316,5 @@ function loadLesson(questions) {
 }
 
 function saveCourseData() {
-  //fs.writeFileSync(path.join('assets', 'lessons.json'), JSON.stringify(courseData))
+  fs.writeFileSync(path.join('assets', 'lessons.json'), JSON.stringify(courseData))
 }
