@@ -1,9 +1,8 @@
-const { app } = require('electron')
-const AspectRatioBrowserWindow = require('electron-aspect-ratio-browser-window')
+const { app, BrowserWindow } = require('electron')
 
 function createWindow() {
   // Create the browser window.
-  const win = new AspectRatioBrowserWindow({
+  const win = new BrowserWindow({
     show: false,
     frame: false,
     webPreferences: {
@@ -12,7 +11,6 @@ function createWindow() {
     },
   })
 
-  //win.setAspectRatio(16 / 9)
   win.maximize()
   win.show()
 

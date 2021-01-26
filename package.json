@@ -20,9 +20,7 @@
   },
   "homepage": "https://github.com/yskandre/hephaistos#readme",
   "dependencies": {
-    "bluebird": "^3.7.2",
     "electron": "^11.0.3",
-    "electron-aspect-ratio-browser-window": "^1.0.2",
     "electron-packager": "^15.1.0",
     "jquery": "^3.5.1",
     "jsdom": "^16.4.0",

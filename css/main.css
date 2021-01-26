@@ -267,6 +267,10 @@ body {
   background-color: var(--color-mastery);
 }
 
+.lesson-button.info {
+  background-color: var(--color-todo);
+}
+
 .lesson-button.selected {
   background-color: var(--color-highlight);
   border-radius: 2.5vh;
@@ -371,4 +375,8 @@ body {
 
 #lesson-info {
   margin: 25px;
+}
+
+#lesson-info .lesson-title {
+  font-size: 20px;
 }

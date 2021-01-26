@@ -14,10 +14,12 @@ function loadCourses() {
       clearedQuestions = Object.values(lesson.questions).filter((q) => q.cleared).length
       totalQuestions = Object.values(lesson.questions).length
       button = $(
-        `<button class='lesson-button'>${lesson.name}<br>${clearedQuestions}/${totalQuestions}</button>`
+        totalQuestions !== 0
+          ? `<button class="lesson-button">${lesson.name}<br>${clearedQuestions}/${totalQuestions}</button>`
+          : `<button class="lesson-button info">${lesson.name}</button>`
       )
       button.on('click', (e) => {
-        if ($(e.target).hasClass('selected')) {
+        if ($(e.target).hasClass('selected') && !$(e.target).hasClass('info')) {
           $(e.target).removeClass('selected')
           loadLesson(lesson.questions)
           $('#lesson-info').html('')
@@ -202,7 +204,7 @@ function loadLesson(questions) {
             button.on('click', function () {
               if (build.some((v) => v === e)) {
                 build = build.filter((v) => v != e)
-                selectedButtons = selectedButtons.filter((v) => v != $(this))
+                selectedButtons = selectedButtons.filter((v) => v !== $(this))
               } else {
                 build.push(e)
                 selectedButtons.push($(this))
@@ -211,7 +213,6 @@ function loadLesson(questions) {
               combination.text(build.join(' '))
             })
             button.appendTo(question)
-            question.append('<br>')
           })
           submit = $(`<button class="task-menu-button">Abgeben!</button>`)
           submit.on('click', function () {
@@ -219,7 +220,7 @@ function loadLesson(questions) {
               newXP += 5
               clearQuestion(q)
               advanceProgress(true)
-              selectedButtons.forEach((b) => b.addClass('matched'))
+              correctButtons.forEach((b) => b.addClass('matched'))
             } else {
               advanceProgress(false)
               selectedButtons.forEach((b) => b.addClass('failed'))
@@ -236,6 +237,7 @@ function loadLesson(questions) {
             next.appendTo($(this).parent())
             $(this).toggle()
           })
+          question.append('<br>')
           combination.appendTo(question)
           question.append('<br>')
           submit.appendTo(question)
@@ -268,7 +270,7 @@ function loadLesson(questions) {
               selectedChoice.addClass('matched')
             } else {
               advanceProgress(false)
-              selectedChoice.addClass('failed')
+              if (selectedChoice) selectedChoice.addClass('failed')
               correctChoices.forEach((b) => b.addClass('matched'))
             }
 

@@ -1,98 +1,122 @@
 [
   {
-    "name": "intro",
+    "name": "Einführung",
     "clearTitle": {
       "name": "Java-Junkie",
       "desc": "Java ist auch eine Insel"
     },
     "lessons": [
       {
-        "name": "lesson 1",
-        "writeup": "The first lesson.",
+        "name": "Was ist ein Programm?",
+        "writeup": "<div class=\"lesson-title\">Was ist Programmieren</div><hr class=\"course-endmark\"><div class=\"lesson-description\">Ein Programm beschreibt eine Aufgabe so eindeutig, dass ein Computer diese lösen kann, wenn er einer Anleitung, einem Algorithmus, folgt.<br><br>Ein Algorithmus beschreibt in kleinstmöglichen Schritten, wie eine Aufgabe gelöst werden kann. Ein Programm 'übersetzt' den Algorithmus mit einer Programmiersprache in Code, der vom Computer verstanden und ausgeführt werden kann. Der Computer folgt diesen Schritten auf's Wort.<br><br>Programme zu schreiben erfordert sowohl Kreativität als auch Problemlösungskompetenz, schließlich muss der Programmierer wissen, wie eine Aufgabe gelöst werden kann, um diese auch zu beschreiben. Nicht unwichtig sind hierbei auch Mathematik und Statistik.<br><br>Programmieren ist allgegenwärtig. Jede Website, jede Anwendung benötigt Programmcode, um zu funktionieren.</div>",
+        "questions": {}
+      },
+      {
+        "name": "Variablen",
+        "writeup": "<div class=\"lesson-title\">Variablen</div><hr class=\"course-endmark\"><div class=\"lesson-description\">In Variablen werden Werte abgespeichert. Der gespeicherte Wert kann auch verändert werden, außer man setzt die Variable als Konstante.<br><br>Variablen haben (zumindest in Java) einen fixen Datentyp. Das bedeutet, dass alle darauf gespeicherten Variablen die selbe Art von Daten sein müssen. Die primitiven Datentypen von Java sind wie folgt:<br><br>byte/short/int/long: Hier kann ein Integer, also ein ganzzahliger Wert wie 1 oder -17 gespeichert werden. Die Typen unterscheiden sich in der minimalen und maximalen Größe einer zugewiesenen Zahl.<br>int x = 1;<br><br>char: Hier kann ein Zeichen, also ein Buchstabe wie 'a' oder eine Ziffer wie '1' gespeichert werden. Es kann auch ein Integer zugewiesen werden, was das zugehörige Zeichen der ASCII Tabelle speichert.<br>char c = '1';<br>char c = 97; => 'a'<br><br>double/float: Hier kann eine Gleitkommazahl wie 0.25 oder -1.5 gespeichert werden. Es kann auch ein Integer zugewiesen werden, der dann mit Kommastellen ausgestattet wird.<br>double b = 0.25;<br>double i = 1; => 1.00<br><br>boolean: Hier kann ein binärer Wert (true/false bzw 1/0) gespeichert werden. Damit kann festgehalten werden, ob etwas wahr oder falsch ist. Es ist auch möglich, Bedingungen zuzuweisen (siehe spätere Lektionen dazu).<br>boolean bool = true;<br><br>Für den Start dieser LV ist auch noch ein weiterer Datentyp sehr wichtig, der String. String speichert eine Zeichenkette, also eine Vielzahl von char. Bei String handelt es sich genauer genommen um ein Objekt, weswegen der String im Gegensatz zu primitiven Datentypen mit einem Großbuchstaben beginnt. Im Gegensatz zu char werden bei der Zuweisung nicht 'einfache' Anführungszeichen, sondern \"doppelte\" Anführungszeichen verwendet.<br>String s = \"Hello World\";</div>",
         "questions": {
           "0": {
             "cleared": false,
             "type": "match",
-            "question": "Match the letters with their corresponding number",
+            "question": "Verbinde die Variablentypen mit den zugehörigen Werten",
             "options": [
-              ["a", "b", "c"],
-              ["1", "2", "3"]
+              ["char", "int", "String", "double"],
+              ["'a'", "13", "\"Hallo\"", "0.25"]
             ],
             "solutions": [
-              ["a", "1"],
-              ["b", "2"],
-              ["c", "3"]
+              ["char", "'a'"],
+              ["int", "13"],
+              ["String", "\"Hallo\""],
+              ["double", "0.25"]
             ]
           },
           "1": {
             "cleared": false,
-            "type": "build",
-            "question": "Build the sequence \"1, 2, 3\"",
-            "options": ["1", "2", "3", "4", "5"],
-            "solutions": [["1", "2", "3"]]
+            "type": "match",
+            "question": "Verbinde die Variablentypen mit den zugehörigen Werten",
+            "options": [
+              ["boolean", "float", "short"],
+              ["false", "3.1415", "0"]
+            ],
+            "solutions": [
+              ["boolean", "false"],
+              ["float", "3.1415"],
+              ["short", "0"]
+            ]
           },
           "2": {
             "cleared": false,
+            "type": "match",
+            "question": "Verbinde die Variablentypen mit den zugehörigen Werten",
+            "options": [
+              ["char", "byte", "boolean"],
+              ["97", "5", "true"]
+            ],
+            "solutions": [
+              ["char", "97"],
+              ["byte", "5"],
+              ["boolean", "true"]
+            ]
+          },
+          "3": {
+            "cleared": false,
+            "type": "build",
+            "question": "Weise der Integer-Variable \"a\" den Wert 1 zu",
+            "options": ["int", "double", "String", "a", "b", "=", "1", "2"],
+            "solutions": [["int", "a", "=", "1"]]
+          },
+          "4": {
+            "cleared": false,
+            "type": "build",
+            "question": "Weise der Zeichen-Variable \"c\" den Wert 'a' zu (ASCII-Wert 97)",
+            "options": ["int", "char", "c", "=", "'a'", "'b'", "1", "97"],
+            "solutions": [
+              ["char", "c", "=", "'a'"],
+              ["char", "c", "=", "97"]
+            ]
+          },
+          "5": {
+            "cleared": false,
             "type": "choice",
-            "question": "Select the answer to following problem: 1 + 1 = ?",
-            "options": ["2", "3", "5"],
-            "solutions": ["2"]
+            "question": "Wähle die erlaubte Zuweisung aus",
+            "options": ["int a = 0.25", "double b = 2", "String hello = world"],
+            "solutions": ["double b = 2"]
+          },
+          "6": {
+            "cleared": false,
+            "type": "choice",
+            "question": "Wähle die erlaubte Zuweisung aus",
+            "options": ["char c = 1", "float f = 'a'", "String s = 'cool'", "boolean b = \"true\""],
+            "solutions": ["char c = 1"]
           }
         }
-      },
-      {
-        "name": "lesson 2",
-        "writeup": "The second lesson",
-        "questions": []
-      },
-      {
-        "name": "lesson 3",
-        "writeup": "The third lesson",
-        "questions": []
       }
     ]
   },
   {
-    "name": "intro 2",
+    "name": "Einfache Java Programme",
     "clearTitle": {
       "name": "Geany-Genius",
       "desc": "Du hast 3 Wünsche - PATH-Probleme nicht inkludiert"
     },
     "lessons": [
       {
-        "name": "lesson 4",
-        "writeup": "The fourth lesson",
-        "questions": []
+        "name": "Eine zusätzliche Lektion",
+        "writeup": "<div class=\"lesson-title\">Ich existiere...</div><hr class=\"course-endmark\"><div class=\"lesson-description\">... um zu zeigen, dass es verschiedene Abschnitte gibt</div>",
+        "questions": {}
       },
       {
-        "name": "lesson 5",
-        "writeup": "The fifth lesson",
-        "questions": []
-      },
-      {
-        "name": "lesson 6",
-        "writeup": "The sixth lesson",
-        "questions": []
-      },
-      {
-        "name": "lesson 7",
-        "writeup": "The seventh lesson",
-        "questions": []
-      },
-      {
-        "name": "lesson 8",
-        "writeup": "The eight lesson",
-        "questions": []
-      },
-      {
-        "name": "lesson 9",
-        "writeup": "The ninth lesson",
-        "questions": []
-      },
-      {
-        "name": "lesson 10",
-        "writeup": "The tenth lesson",
-        "questions": []
+        "name": "Eine zusätzliche Lektion",
+        "writeup": "<div class=\"lesson-title\">Ich existiere...</div><hr class=\"course-endmark\"><div class=\"lesson-description\">... um zu zeigen, dass es verschiedene Abschnitte gibt</div>",
+        "questions": {
+          "0": {
+            "cleared": false,
+            "type": "choice",
+            "question": "Es ist auch möglich, mehrere Antwortmöglichkeiten als richtig zu werten",
+            "options": ["Ich bin richtig", "Bin ich richtig?", "Vielleicht..."],
+            "solutions": ["Ich bin richtig", "Bin ich richtig?", "Vielleicht..."]
+          }
+        }
       }
     ]
   }
