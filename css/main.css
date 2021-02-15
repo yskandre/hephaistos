@@ -364,6 +364,10 @@ body {
   opacity: 60%;
 }
 
+.modal .task-menu-button {
+  border-color: var(--color-mastery);
+}
+
 #detail-tab {
   margin: 25px;
   background-color: var(--color-secondary);
