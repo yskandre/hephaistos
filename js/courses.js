@@ -29,12 +29,13 @@ function loadCourses() {
           $('#lesson-info').html(lesson.writeup)
         }
       })
-      if (clearedQuestions === totalQuestions) {
-        masteredLessons += 1
-        button.addClass('mastered')
+      if (totalQuestions !== 0) {
+        if (clearedQuestions === totalQuestions) {
+          masteredLessons += 1
+          button.addClass('mastered')
+        }
+        totalLessons += 1
       }
-      totalLessons += 1
-
       button.appendTo(segment)
     })
     footer = $(
@@ -214,7 +215,7 @@ function loadLesson(questions) {
             })
             button.appendTo(question)
           })
-          submit = $(`<button class="task-menu-button">Abgeben!</button>`)
+          submit = $(`<button class="task-menu-button">Abgeben</button>`)
           submit.on('click', function () {
             if (q.solutions.some((s) => _.isEqual(s, build))) {
               newXP += 5
@@ -261,7 +262,7 @@ function loadLesson(questions) {
             button.appendTo(question)
             question.append('<br>')
           })
-          submit = $(`<button class="task-menu-button">Abgeben!</button>`)
+          submit = $(`<button class="task-menu-button">Abgeben</button>`)
           submit.on('click', function () {
             if (_.contains(q.solutions, choice)) {
               newXP += 5
