@@ -365,7 +365,9 @@ body {
 }
 
 .modal .task-menu-button {
-  border-color: var(--color-mastery);
+  border-right: 15px;
+  border-left: 15px;
+  border-color: var(--color-menu-border);
 }
 
 #detail-tab {

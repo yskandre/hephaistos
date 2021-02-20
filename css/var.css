@@ -8,6 +8,7 @@
   --color-secondary: #dbcfa2;
   --color-ternary: #dec5fa;
   --color-border: #db614b;
+  --color-menu-border: #c5defa;
   --color-drop: #db614b;
   --color-shadow: #8f352f;
   --color-highlight: #94abd6;
@@ -30,6 +31,7 @@
   --color-secondary: #29255c;
   --color-ternary: #db7a5c;
   --color-border: #6e2545;
+  --color-menu-border: #864297;
   --color-drop: #6e2545;
   --color-shadow: #5c1548;
   --color-highlight: #7668db;
